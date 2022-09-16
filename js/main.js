@@ -20,24 +20,9 @@ class Game {
         setInterval(() => {
             this.obstacles.forEach( (obstacleInstance) => {
                 obstacleInstance.moveDown();
-                if (
-                    this.player.positionX < obstacleInstance.positionX + obstacleInstance.width &&
-                    this.player.positionX + this.player.width > obstacleInstance.positionX &&
-                    this.player.positionY < obstacleInstance.positionY + obstacleInstance.height &&
-                    this.player.height + this.player.positionY > obstacleInstance.positionY
-                ) {
-                    location.href = 'gameover.html'
-                }
-
-                if(obstacleInstance.positionY < 0){
-                    obstacleInstance.domElement.remove();
-                    this.obstacles.shift();
-
-
-                }
-
-
-            });
+                this.detectCollision(obstacleInstance);
+                this.removeObstacleIfOutside(obstacleInstance);
+    });
         }, 60);
 
        
@@ -50,6 +35,26 @@ class Game {
                 this.player.moveRight();
             }
         });
+    }
+
+    detectCollision(obstacleInstance){
+        if (
+            this.player.positionX < obstacleInstance.positionX + obstacleInstance.width &&
+            this.player.positionX + this.player.width > obstacleInstance.positionX &&
+            this.player.positionY < obstacleInstance.positionY + obstacleInstance.height &&
+            this.player.height + this.player.positionY > obstacleInstance.positionY
+        ) {
+            location.href = 'gameover.html'
+        }
+
+    }
+    removeObstacleIfOutside(obstacleInstance){
+        if(obstacleInstance.positionY < 0){
+            obstacleInstance.domElement.remove();
+            this.obstacles.shift();
+
+
+        }
     }
 }
 
