@@ -29,6 +29,13 @@ class Game {
                     location.href = 'gameover.html'
                 }
 
+                if(obstacleInstance.positionY < 0){
+                    obstacleInstance.domElement.remove();
+                    this.obstacles.shift();
+
+
+                }
+
 
             });
         }, 60);
