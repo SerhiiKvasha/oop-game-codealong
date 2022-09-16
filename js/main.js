@@ -49,10 +49,10 @@ class Game {
 
 class Player {
     constructor(){
-        this.positionX = 50;
-        this.positionY = 0;
         this.width = 20;
         this.height = 10;
+        this.positionX = 50;
+        this.positionY = 0;
         this.domElement = null;
 
         this.createDomElement();
@@ -85,10 +85,10 @@ class Player {
 
 class Obstacle {
     constructor(){
-        this.positionX = 50;
-        this.positionY = 90;
         this.width = 10;
         this.height = 10;
+        this.positionX = Math.floor(Math.random() * (100 - this.width + 1));                    ;
+        this.positionY = 90;
         this.domElement = null;
 
         this.createDomElement();
